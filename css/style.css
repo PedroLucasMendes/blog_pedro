@@ -157,50 +157,143 @@ main {
   font-size: 1.05rem;
 }
 
-/* ---------- Post list (index) ---------- */
+/* ---------- Home: largura maior para o grid de cards ---------- */
 
-.post-list {
+body.home .wrapper {
+  max-width: 1080px;
+}
+
+/* ---------- Filtro de categorias ---------- */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.filter-btn {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ---------- Post grid (index, estilo "Medium") ---------- */
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.post-item {
-  padding: 22px 0;
-  border-bottom: 1px solid var(--border);
+.post-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
-.post-item:first-child {
-  padding-top: 0;
+.post-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
 }
 
-.post-item .post-date {
-  font-size: 0.85rem;
+.post-card.is-hidden {
+  display: none;
+}
+
+.post-card a.card-link {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-cover {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  background: var(--code-bg);
+}
+
+/* Capa gerada automaticamente quando o post não tem imagem própria */
+.card-cover-placeholder {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: var(--font-serif);
+  background: linear-gradient(135deg, var(--cover-a, #2b6cb0), var(--cover-b, #7c3aed));
+}
+
+.card-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-date {
+  font-size: 0.8rem;
   color: var(--text-muted);
   font-family: var(--font-mono);
 }
 
-.post-item h2 {
-  margin: 6px 0 8px;
-  font-size: 1.3rem;
-}
-
-.post-item h2 a {
+.card-body h2 {
+  margin: 8px 0 8px;
+  font-size: 1.2rem;
+  line-height: 1.35;
   color: var(--text);
-  text-decoration: none;
 }
 
-.post-item h2 a:hover {
-  color: var(--accent);
-}
-
-.post-item p {
+.card-body p {
   margin: 0;
   color: var(--text-muted);
+  font-size: 0.95rem;
+  flex: 1;
 }
 
-.post-item .tags {
-  margin-top: 10px;
+.card-body .tags {
+  margin-top: 14px;
+}
+
+.no-results {
+  display: none;
+  color: var(--text-muted);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.no-results.visible {
+  display: block;
 }
 
 /* ---------- Tags ---------- */

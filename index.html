@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pedro Mendes — Blog</title>
-<meta name="description" content="Blog pessoal de Pedro Mendes: anotações, projetos e ideias.">
+<meta name="description" content="Blog pessoal de Pedro Mendes: conhecimentos de programação, projetos e ideias.">
 <link rel="stylesheet" href="css/style.css">
 <script src="js/theme.js"></script>
 </head>
-<body>
+<body class="home">
 
 <header class="site-header">
   <div class="wrapper">
     <a href="index.html" class="brand">
       <span class="name">Pedro Mendes</span>
-      <span class="tagline">anotações, projetos e ideias</span>
+      <span class="tagline">programação, projetos e ideias</span>
     </a>
     <nav class="site-nav">
       <a href="index.html" class="active">Posts</a>
@@ -28,24 +28,48 @@
   <h1 class="page-title">Posts</h1>
   <p class="page-subtitle">Tudo o que escrevo por aqui, do mais recente para o mais antigo.</p>
 
-  <ul class="post-list">
-    <li class="post-item">
-      <span class="post-date">02 de outubro de 2026</span>
-      <h2><a href="posts/primeiro-post.html">Meu primeiro post</a></h2>
-      <p>Um post inicial explicando o propósito deste blog e o que vem por aí.</p>
-      <div class="tags">
-        <a href="#" class="tag">bem-vindo</a>
-        <a href="#" class="tag">meta</a>
-      </div>
+  <!--
+    Barra de filtro por categoria. Cada botão tem data-filter, que deve
+    bater com o data-category dos cards abaixo. "todos" sempre mostra tudo.
+    Para adicionar uma nova categoria no futuro, basta criar um novo botão
+    aqui com o mesmo valor usado em data-category nos cards.
+  -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="todos">Todos</button>
+    <button class="filter-btn" data-filter="programacao">Programação</button>
+  </div>
+
+  <ul class="post-grid">
+    <li class="post-card" data-category="programacao">
+      <a class="card-link" href="posts/primeiro-post.html">
+        <!--
+          Capa automática (sem imagem própria): mostra a inicial do título
+          sobre um gradiente. Para usar uma foto real, troque este <div>
+          por: <img class="card-cover" src="../images/sua-foto.jpg" alt="...">
+        -->
+        <div class="card-cover-placeholder" style="--cover-a:#2b6cb0; --cover-b:#7c3aed;">M</div>
+        <div class="card-body">
+          <span class="card-date">02 de outubro de 2026</span>
+          <h2>Meu primeiro post</h2>
+          <p>Um post inicial explicando o propósito deste blog e o que vem por aí.</p>
+          <div class="tags">
+            <span class="tag">bem-vindo</span>
+            <span class="tag">meta</span>
+          </div>
+        </div>
+      </a>
     </li>
 
     <!--
       Para adicionar um novo post:
       1. Copie posts/primeiro-post.html para posts/novo-nome.html
       2. Edite o título, data, tags e conteúdo
-      3. Adicione um <li class="post-item"> novo aqui no topo da lista, apontando para ele
+      3. Adicione um <li class="post-card"> novo aqui no topo da lista,
+         com data-category correspondente a um dos botões do filtro acima
     -->
   </ul>
+
+  <p id="no-results" class="no-results">Nenhum post encontrado nessa categoria ainda.</p>
 </main>
 
 <footer class="site-footer">
@@ -54,5 +78,6 @@
   </div>
 </footer>
 
+<script src="js/filter.js"></script>
 </body>
 </html>
